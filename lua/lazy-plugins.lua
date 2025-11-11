@@ -54,7 +54,7 @@ require('lazy').setup({
 
   require 'kickstart.plugins.which-key',
 
-  require 'kickstart.plugins.neo-tree',
+  --  require 'kickstart.plugins.neo-tree',
 
   require 'kickstart.plugins.autopairs',
 
@@ -82,6 +82,39 @@ require('lazy').setup({
   require 'kickstart.plugins.mini',
 
   require 'kickstart.plugins.treesitter',
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'nvim-tree/nvim-web-devicons', -- optional, but recommended
+    },
+    lazy = false, -- neo-tree will lazily load itself
+    config = function()
+      require('neo-tree').setup {
+        window = {
+          position = 'left',
+          width = 30,
+          mappings = {
+            -- You can also define window-specific keymaps here
+            ['<space>'] = 'none', -- Unmap the spacebar to prevent conflicts
+            ['d'] = 'delete',
+            ['o'] = 'open',
+          },
+        },
+        filesystem = {
+          follow_current_file = {
+            enabled = true,
+          },
+        },
+        close_if_last_window = true,
+        enable_git_status = true,
+        enable_diagnostics = true,
+      }
+    end,
+  },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
