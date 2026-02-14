@@ -1,3 +1,9 @@
+-- External dependencies:
+--   npm install -g prettier          (html, css, javascript)
+--   pipx install black               (python)
+--   pipx install c-formatter-42      (c, cpp)
+--   stylua: installed via cargo or package manager (lua)
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
@@ -19,7 +25,8 @@ return {
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        -- local disable_filetypes = { c = true, cpp = true }
+        local disable_filetypes = {}
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
@@ -34,6 +41,9 @@ return {
         html = { 'prettier' },
         css = { 'prettier' },
         javascript = { 'prettier' },
+        python = { 'black' },
+        c = { 'c_formatter_42' },
+        cpp = { 'c_formatter_42' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
