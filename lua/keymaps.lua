@@ -59,4 +59,23 @@ vim.keymap.set('n', '-', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 
 vim.keymap.set('n', '<leader>ri', 'mzgg=G`z', { desc = '[R]e-[I]ndent entire file' })
 
+-- Jump past closing brackets/quotes in insert mode
+vim.keymap.set('i', '<C-l>', function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local closing = { [')'] = true, [']'] = true, ['}'] = true, ["'"] = true, ['"'] = true, ['`'] = true }
+  local skip = 0
+  for i = col + 1, #line do
+    if closing[line:sub(i, i)] then
+      skip = skip + 1
+    else
+      break
+    end
+  end
+  if skip > 0 then
+    local keys = vim.api.nvim_replace_termcodes(string.rep('<Right>', skip), true, false, true)
+    vim.api.nvim_feedkeys(keys, 'n', false)
+  end
+end, { desc = 'Skip past closing brackets/quotes' })
+
 -- [[ Plugin Keymaps]]
