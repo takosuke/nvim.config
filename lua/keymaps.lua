@@ -60,6 +60,3 @@ vim.keymap.set('n', '-', '<cmd>tabprevious<cr>', { desc = 'Previous Tab' })
 vim.keymap.set('n', '<leader>ri', 'mzgg=G`z', { desc = '[R]e-[I]ndent entire file' })
 
 -- [[ Plugin Keymaps]]
---
--- [[ Neo-Tree ]]
-vim.keymap.set('n', '<C-n>', '<Cmd>Neotree toggle<CR>')

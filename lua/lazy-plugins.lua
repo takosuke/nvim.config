@@ -83,43 +83,12 @@ require('lazy').setup({
 
   require 'kickstart.plugins.treesitter',
 
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v3.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'nvim-tree/nvim-web-devicons', -- optional, but recommended
-    },
-    lazy = false, -- neo-tree will lazily load itself
-    config = function()
-      require('neo-tree').setup {
-        window = {
-          position = 'left',
-          width = 30,
-          mappings = {
-            -- You can also define window-specific keymaps here
-            ['<space>'] = 'none', -- Unmap the spacebar to prevent conflicts
-            ['d'] = 'delete',
-            ['o'] = 'open',
-          },
-        },
-        filesystem = {
-          follow_current_file = {
-            enabled = true,
-          },
-        },
-        close_if_last_window = true,
-        enable_git_status = true,
-        enable_diagnostics = true,
-      }
-    end,
-  },
+  require 'kickstart.plugins.nvim-ts-autotag',
 
+  require 'kickstart.plugins.neo-tree',
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
-
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
   --  Here are some example plugins that I've included in the Kickstart repository.
@@ -128,14 +97,13 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
+  --
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' },
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
