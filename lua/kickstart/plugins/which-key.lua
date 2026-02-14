@@ -43,6 +43,16 @@ return {
         },
       },
 
+      -- Disable which-key for well-known vim keys
+      defer = function(ctx)
+        local ignore = { 'c', 'd', 'y', 'v', 'g', 'z', '>', '<', '!', 'r', 'q', 'm', "'", '`', '"', 'f', 'F', 't', 'T' }
+        for _, key in ipairs(ignore) do
+          if ctx.operator == key or ctx.keys == key then
+            return true
+          end
+        end
+      end,
+
       -- Document existing key chains
       spec = {
         { '<leader>s', group = '[S]earch' },
