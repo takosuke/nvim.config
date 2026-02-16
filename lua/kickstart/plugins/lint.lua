@@ -9,6 +9,7 @@ return {
     config = function()
       local lint = require 'lint'
 
+      --[[
       -- Define custom norminette linter
       lint.linters.norminette = {
         cmd = 'norminette',
@@ -38,6 +39,8 @@ return {
         c = { 'norminette' },
         cpp = { 'norminette' },
       }
+      ]]
+      --
 
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
