@@ -17,6 +17,19 @@ vim.keymap.set('n', '<CR>', 's')
 -- vim.keymap.set()
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next { float = false } end, { desc = 'Next [D]iagnostic' })
+vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev { float = false } end, { desc = 'Prev [D]iagnostic' })
+vim.keymap.set('n', ']e', function() vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR, float = false } end, { desc = 'Next [E]rror' })
+vim.keymap.set('n', '[e', function() vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR, float = false } end, { desc = 'Prev [E]rror' })
+
+-- Refresh diagnostics when entering normal mode (so they always appear without needing to edit)
+vim.api.nvim_create_autocmd('ModeChanged', {
+  pattern = '*:n',
+  callback = function()
+    vim.diagnostic.show(nil, 0)
+  end,
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
