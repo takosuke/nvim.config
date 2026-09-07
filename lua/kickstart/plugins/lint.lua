@@ -42,6 +42,11 @@ return {
       ]]
       --
 
+      -- nvim-lint ships with defaults (text/markdown/rst -> vale, json -> jsonlint,
+      -- clojure -> clj-kondo, ...). Assigning the table replaces them, so nothing
+      -- runs unless it is listed here. Add entries as the tools get installed.
+      lint.linters_by_ft = {}
+
       -- Create autocommand which carries out the actual linting
       -- on the specified events.
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })

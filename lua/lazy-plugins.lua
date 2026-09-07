@@ -50,6 +50,8 @@ require('lazy').setup({
   -- Then, because we use the `opts` key (recommended), the configuration runs
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
+  require 'kickstart.plugins.diffview',
+
   require 'kickstart.plugins.gitsigns', -- See `:help gitsigns` to understand what the configuration keys do
 
   require 'kickstart.plugins.which-key',
